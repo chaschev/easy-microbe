@@ -1,0 +1,4 @@
+- run-in-class with params
+- add cpu-only test
+- add sortables
+- run remotely
