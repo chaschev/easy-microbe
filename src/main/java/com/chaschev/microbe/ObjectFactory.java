@@ -7,10 +7,10 @@ package com.chaschev.microbe;
 public abstract class ObjectFactory<T> {
     protected int granularity = -1;
 
-    ObjectFactory() {
+    public ObjectFactory() {
     }
 
-    ObjectFactory(int granularity) {
+    public ObjectFactory(int granularity) {
         this.granularity = granularity;
     }
 
