@@ -1,4 +1,5 @@
 - run-in-class with params
-- add cpu-only test
-- add sortables
+- (ok) add cpu-only test
+- (ok) add cpu in quick sort
+- (ok) simplify memory-test launching
 - run remotely

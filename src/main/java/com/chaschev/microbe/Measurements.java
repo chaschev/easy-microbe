@@ -14,7 +14,7 @@ public interface Measurements {
     //label for the coordinate
     String getLabel(int i);
 
-    void addMemoryAndCpu(long memory, long cpuMs);
+    void addMemoryAndCpu(long memAfterNoGC, long memory, long cpuMs);
 
     long getMemory();
     long getCpu();
@@ -27,7 +27,7 @@ public interface Measurements {
 
     int size();
 
-    MeasurementsImpl.Value getValue(int i);
+    Value getValue(int i);
 
-    void add(MeasurementsImpl.Value value);
+    void add(Value value);
 }

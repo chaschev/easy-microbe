@@ -32,38 +32,6 @@ public class MeasurementsImpl implements Measurements {
         return r;
     }
 
-    static class Value{
-        double v;
-        String label;
-        String type;
-
-        Value(double v, String label, String type) {
-            this.v = v;
-            this.label = label;
-            this.type = type;
-        }
-
-        Value(float v, String label) {
-            this.v = v;
-            this.label = label;
-            this.type = Measurements.TYPE_MEMORY;
-        }
-
-        public boolean isMemory() {
-            return TYPE_MEMORY.equals(type);
-        }
-
-        @Override
-        public String toString() {
-            final StringBuilder sb = new StringBuilder("Value{");
-            sb.append("v=").append(v);
-            sb.append(", label='").append(label).append('\'');
-            sb.append(", type='").append(type).append('\'');
-            sb.append('}');
-            return sb.toString();
-        }
-    }
-
     List<Value> values;
 
     int memoryIndex;
@@ -81,8 +49,9 @@ public class MeasurementsImpl implements Measurements {
         return values.get(i).label;
     }
 
-    public void addMemoryAndCpu(long memory, long cpuMs) {
-        add(new Value(memory, "total mem", TYPE_MEMORY));
+    public void addMemoryAndCpu(long memAfterNoGC, long memory, long cpuMs) {
+        add(new Value(memory, "mem (with GC, cons.)", TYPE_MEMORY));
+        add(new Value(memAfterNoGC, "mem (no GC, alloc.)", TYPE_MEMORY));
         add(new Value(cpuMs, "total cpu, ms", TYPE_TIME));
 
         memoryIndex = values.size() - 2;

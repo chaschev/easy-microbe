@@ -19,9 +19,9 @@ public class Clusterables {
         Measurements r = MeasurementsImpl.copyNonValues(a);
 
         for (int i = 0; i < a.size(); i++) {
-            MeasurementsImpl.Value v = a.getValue(i);
+            Value v = a.getValue(i);
 
-            r.add(new MeasurementsImpl.Value(Math.min(a.get(i), b.get(i)), v.label, v.type));
+            r.add(new Value(Math.min(a.get(i), b.get(i)), v.label, v.type));
         }
 
         return r;
@@ -31,9 +31,9 @@ public class Clusterables {
         Measurements r = MeasurementsImpl.copyNonValues(a);
 
         for (int i = 0; i < a.size(); i++) {
-            MeasurementsImpl.Value v = a.getValue(i);
+            Value v = a.getValue(i);
 
-            r.add(new MeasurementsImpl.Value(Math.max(a.get(i), b.get(i)), v.label, v.type));
+            r.add(new Value(Math.max(a.get(i), b.get(i)), v.label, v.type));
         }
 
         return r;
@@ -84,7 +84,7 @@ public class Clusterables {
                         humanReadableByteCount(stddev.get(i), false).toString(2)
                     );
                 }else{
-                    formatter.format("%20s | %12.3f | %12.3f | %12.3f | %12.3f%n", avg.getLabel(i),
+                    formatter.format("%20s | %12.5f | %12.5f | %12.5f | %12.5f%n", avg.getLabel(i),
                         min.get(i),
                         avg.get(i),
                         max.get(i),
@@ -168,7 +168,6 @@ public class Clusterables {
 
     public static Measurements variance(List<Measurements> list) {
         int coordinateCount = list.get(0).size();
-        double memSum = 0;
 
         int n = 0;
         double[] mean = new double[coordinateCount ];
@@ -189,8 +188,6 @@ public class Clusterables {
         for (int i = 0; i < sums.length; i++) {
             floatMeans[i] = (sums[i] / list.size());
         }
-
-        memSum /= list.size();
 
         return newWithLabelsFrom(list.get(0), floatMeans);
     }
