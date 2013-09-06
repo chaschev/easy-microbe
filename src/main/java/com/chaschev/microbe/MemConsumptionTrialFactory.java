@@ -1,5 +1,7 @@
 package com.chaschev.microbe;
 
+import com.chaschev.microbe.trial.AbstractTrial;
+
 import java.lang.reflect.Array;
 
 /**
@@ -24,7 +26,7 @@ public class MemConsumptionTrialFactory<T> extends TrialFactory {
 
     @Override
     public Microbe.Trial create(final int trialIndex) {
-        return new Microbe.AbstractTrial() {
+        return new AbstractTrial() {
             /**
              * Holds objects not to be cleared by GC.
              */

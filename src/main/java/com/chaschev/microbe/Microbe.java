@@ -1,5 +1,6 @@
 package com.chaschev.microbe;
 
+import com.chaschev.microbe.trial.AbstractTrial;
 import org.apache.commons.lang3.time.StopWatch;
 
 import java.lang.management.ManagementFactory;
@@ -105,15 +106,6 @@ public class Microbe {
         public abstract void releaseMemory();
 
         public void addResultsAfterCompletion(Measurements result){}
-    }
-    
-    public static abstract class AbstractTrial extends Trial{
-        public Trial prepare() {
-            return this;
-        }
-
-        public void releaseMemory() {
-        }
     }
 
     private static long gcAndGetMemory(StopWatch gcSW) {
@@ -239,7 +231,7 @@ public class Microbe {
         return trialCount > 500 ? Math.max(trialCount / 200, 1) : 1;
     }
 
-    private Microbe noSort() {
+    public Microbe noSort() {
         sortOptions = null;
         return this;
     }

@@ -3,6 +3,7 @@ package com.chaschev.microbe;
 //import gnu.trove.list.array.TIntArrayList;
 //import gnu.trove.map.hash.TIntIntHashMap;
 
+import com.chaschev.microbe.trial.AbstractTrial;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,7 +62,7 @@ public class MemConsumptionTest {
 
             final Foo obj = new Foo();
 
-            final Microbe.AbstractTrial trial = new Microbe.AbstractTrial() {
+            final AbstractTrial trial = new AbstractTrial() {
                 int errorCount = 0;
 
                 @Override
