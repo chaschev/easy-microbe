@@ -16,7 +16,6 @@ import java.util.List;
  * Date: 19.11.11
  */
 
-
 public class MemConsumptionTest {
     public static final Logger logger = LoggerFactory.getLogger(MemConsumptionTest.class);
 

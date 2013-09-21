@@ -34,4 +34,8 @@ public class Value {
         sb.append('}');
         return sb.toString();
     }
+
+    public Value dup(){
+        return new Value(v, label, type);
+    }
 }

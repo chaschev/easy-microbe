@@ -189,6 +189,8 @@ public class Microbe {
                 memAfter = memAfterNoGC;
             }
 
+            result = result.dup();
+
             result.addMemoryAndCpu(memAfterNoGC - memBefore, memAfter - memBefore, endedAt - startedAt);
 
             trial.addResultsAfterCompletion(result);

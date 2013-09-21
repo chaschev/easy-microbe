@@ -30,4 +30,6 @@ public interface Measurements {
     Value getValue(int i);
 
     void add(Value value);
+
+    Measurements dup();
 }

@@ -1,7 +1,9 @@
 package com.chaschev.microbe;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +22,7 @@ public class MeasurementsImpl implements Measurements {
     }
 
     public static MeasurementsImpl newWithLabelsFrom(Measurements measurements, double... values) {
+        measurements = measurements.dup();
         final MeasurementsImpl r = copyNonValues(measurements);
 
         for (int i = 0; i < values.length; i++) {
@@ -37,8 +40,18 @@ public class MeasurementsImpl implements Measurements {
     int memoryIndex;
     int cpuIndex;
 
+    public static final MeasurementsImpl EMPTY = new MeasurementsImpl();
+
     public MeasurementsImpl(Value... values) {
         this.values = Lists.newArrayList(values);
+    }
+
+    public MeasurementsImpl(List<Value> values) {
+        this.values = values;
+    }
+
+    public MeasurementsImpl() {
+        this.values = new ArrayList<Value>(8);
     }
 
     public double get(int i) {
@@ -92,6 +105,16 @@ public class MeasurementsImpl implements Measurements {
     @Override
     public void add(Value value) {
         values.add(value);
+    }
+
+    @Override
+    public Measurements dup() {
+        return new MeasurementsImpl(Lists.newArrayList(Lists.transform(values, new Function<Value, Value>() {
+            @Override
+            public Value apply( Value input) {
+                return input.dup();
+            }
+        })));
     }
 
     @Override
